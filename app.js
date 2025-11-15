@@ -18,7 +18,7 @@ function showThemes(){
   categories.forEach(cat=>{
     const card=document.createElement('div'); card.className='card';
     let imgUrl = "https://via.placeholder.com/300x140.png?text="+cat; // valeur par défaut
-if(cat === "Technologie") imgUrl = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTVLVAjjVJQ2QC25SWgGPmwUe4Dq9Bd0TUzdw&s";
+if(cat === "Technologie") imgUrl = "https://consomac.fr/images/news/iphone-17-recap-juin.jpg";
 
 card.innerHTML=`<img src="${imgUrl}" alt="${cat}"><div class="title">${cat}</div>`;
 
