@@ -30,3 +30,15 @@ body{font-family:'Inter',system-ui,Arial,sans-serif;background:var(--bg);color:v
 .btn-buy:hover{transform:translateY(-2px);box-shadow:0 4px 10px var(--shadow);}
 
 footer{padding:25px;text-align:center;color:#666;font-size:14px;background:#f2f4f7;}
+html, body {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
+}
