@@ -17,7 +17,11 @@ function showThemes(){
   const grid=document.createElement('div'); grid.className='grid';
   categories.forEach(cat=>{
     const card=document.createElement('div'); card.className='card';
-    card.innerHTML=`<img src="https://via.placeholder.com/300x140.png?text=${cat}" alt="${cat}"><div class="title">${cat}</div>`;
+    let imgUrl = "https://via.placeholder.com/300x140.png?text="+cat; // valeur par défaut
+if(cat === "Technologie") imgUrl = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTVLVAjjVJQ2QC25SWgGPmwUe4Dq9Bd0TUzdw&s";
+
+card.innerHTML=`<img src="${imgUrl}" alt="${cat}"><div class="title">${cat}</div>`;
+
     card.onclick=()=>showArticles(cat);
     grid.appendChild(card);
   });
