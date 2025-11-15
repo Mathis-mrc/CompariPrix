@@ -42,3 +42,10 @@ body {
 main {
   flex: 1;
 }
+.card img {
+  width: 100%;
+  height: 140px;
+  object-fit: contain;
+  object-position: center; /* centre l’image */
+  border-radius: 8px;
+}
