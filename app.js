@@ -1,44 +1,71 @@
+let currentView = 'home';
+let currentCategory = '';
+let products = [];
+
 async function loadProducts(){
   const res = await fetch('products.json');
-  const products = await res.json();
-  renderProducts(products);
+  products = await res.json();
+  showThemes();
 }
 
-function renderProducts(products){
-  const container = document.getElementById('products');
-  container.innerHTML = '';
-  products.forEach(p => {
-    const bestOffer = p.offers.reduce((a,b)=> a.price <= b.price ? a : b);
+function showThemes(){
+  currentView = 'home';
+  document.getElementById('nav-back').style.display='none';
+  const main = document.getElementById('main-content');
+  main.innerHTML = '';
+  const categories = [...new Set(products.map(p=>p.category))];
+  const grid = document.createElement('div'); grid.className='grid';
+  categories.forEach(cat=>{
+    const theme = document.createElement('div'); theme.className='card';
+    theme.innerHTML = `<img src="https://via.placeholder.com/300x140.png?text=${cat}" alt="${cat}"><div class="title">${cat}</div>`;
+    theme.onclick = ()=>showArticles(cat);
+    grid.appendChild(theme);
+  });
+  main.appendChild(grid);
+}
+
+function showArticles(cat){
+  currentView = 'category';
+  currentCategory = cat;
+  document.getElementById('nav-back').style.display='block';
+  const main = document.getElementById('main-content'); main.innerHTML='';
+  const grid = document.createElement('div'); grid.className='grid';
+  const filtered = products.filter(p=>p.category===cat);
+  filtered.forEach(p=>{
     const card = document.createElement('div'); card.className='card';
-    card.innerHTML = `
-      <img src="${p.image}" alt="${p.title}" />
-      <div class="title">${p.title}</div>
-      <div class="features">${p.features.join(' • ')}</div>
-      <table class="table-offers">
-        ${p.offers.map(o => `
-          <tr>
-            <td>${o.seller}</td>
-            <td class="${o.price === bestOffer.price ? 'best' : ''}">${o.price.toFixed(2)}€</td>
-            <td><a class="btn-buy" href="${o.link}" target="_blank" rel="nofollow noopener noreferrer">Voir l'offre</a></td>
-          </tr>`).join('')}
-      </table>
-    `;
-    container.appendChild(card);
+    card.innerHTML=`<img src="${p.image}" alt="${p.title}"><div class="title">${p.title}</div>`;
+    card.onclick = ()=>showProduct(p.id);
+    grid.appendChild(card);
   });
-  attachFilters(products);
+  main.appendChild(grid);
 }
 
-function attachFilters(products){
-  const buttons = document.querySelectorAll('.cat-btn');
-  buttons.forEach(btn=>{
-    btn.onclick = ()=>{
-      buttons.forEach(b=>b.classList.remove('active'));
-      btn.classList.add('active');
-      const cat = btn.getAttribute('data-cat');
-      const filtered = cat === 'all' ? products : products.filter(p=>p.category === cat);
-      renderProducts(filtered);
-    }
-  });
+function showProduct(id){
+  currentView='product';
+  document.getElementById('nav-back').style.display='block';
+  const main = document.getElementById('main-content'); main.innerHTML='';
+  const p = products.find(x=>x.id===id);
+  const container = document.createElement('div'); container.className='card';
+  container.innerHTML=`
+    <img src="${p.image}" alt="${p.title}" style="height:250px;object-fit:cover;">
+    <h2 class="title">${p.title}</h2>
+    <p class="features">${p.description}</p>
+    <table class="table-offers">
+      ${p.offers.map(o=>`
+        <tr>
+          <td>${o.seller}</td>
+          <td class="${o.price===Math.min(...p.offers.map(x=>x.price)) ? 'best' : ''}">${o.price.toFixed(2)}€</td>
+          <td><a class="btn-buy" href="${o.link}" target="_blank" rel="nofollow noopener noreferrer">Voir l'offre</a></td>
+        </tr>`).join('')}
+    </table>
+  `;
+  main.appendChild(container);
+}
+
+// Bouton retour
+document.getElementById('back-btn').onclick = ()=>{
+  if(currentView==='category') showThemes();
+  else if(currentView==='product') showArticles(currentCategory);
 }
 
 loadProducts();
