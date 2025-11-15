@@ -1,0 +1,25 @@
+[
+  {
+    "id": "p1",
+    "category": "Technologie",
+    "title": "Écouteurs XY Smart",
+    "image": "https://via.placeholder.com/200x120.png?text=Ecouteurs+XY",
+    "features": ["ANC", "30h autonomie"],
+    "offers": [
+      {"seller":"Amazon", "price": 79.99, "link":"https://amzn.to/TON-LIEN-AFF"},
+      {"seller":"CDiscount", "price": 74.90, "link":"https://www.cdiscount.com/TON-LIEN-AFF"},
+      {"seller":"Fnac", "price": 82.00, "link":"https://www.fnac.com/TON-LIEN-AFF"}
+    ]
+  },
+  {
+    "id": "p2",
+    "category": "Maison",
+    "title": "Aspirateur Turbo 3000",
+    "image": "https://via.placeholder.com/200x120.png?text=Aspirateur",
+    "features": ["Sans fil", "1.2kg"],
+    "offers": [
+      {"seller":"Amazon", "price": 129.90, "link":"https://amzn.to/TON-LIEN-AFF"},
+      {"seller":"Rakuten", "price": 124.00, "link":"https://fr.shopping.rakuten.com/TON-LIEN-AFF"}
+    ]
+  }
+]
