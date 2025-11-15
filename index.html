@@ -1,11 +1,33 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <title>Comprix</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>COMPRIX — Compare les prix</title>
+  <link rel="stylesheet" href="styles.css" />
+  <meta name="description" content="Comparateur simple et rapide de produits - Trouve le meilleur prix en un clic." />
 </head>
 <body>
-    <h1>Bienvenue sur Comprix</h1>
-    <p>Ton futur comparateur de prix 🚀</p>
+  <header class="site-header">
+    <h1>COMPRIX</h1>
+    <p class="tag">Comparer. Trouver. Économiser.</p>
+    <nav>
+      <button data-cat="all" class="cat-btn active">Tous</button>
+      <button data-cat="Technologie" class="cat-btn">Technologie</button>
+      <button data-cat="Maison" class="cat-btn">Maison</button>
+      <button data-cat="Déco" class="cat-btn">Déco</button>
+    </nav>
+  </header>
+
+  <main>
+    <section id="products" class="grid"></section>
+  </main>
+
+  <footer>
+    <p>© COMPRIX — Comparateur. Affiliations : nous touchons une commission si vous achetez via nos liens.</p>
+    <p><a href="#">Mentions légales</a></p>
+  </footer>
+
+  <script src="app.js"></script>
 </body>
 </html>
